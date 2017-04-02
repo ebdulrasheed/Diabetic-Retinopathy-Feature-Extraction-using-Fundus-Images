@@ -36,40 +36,12 @@ class MainWindow:
 
         self.fileName = Tkinter.StringVar()
 
-
         ### Welcome Frame [First Frame] ###
-##        welcomeFrame = Tkinter.Frame(self.MainWindow, width = wWidth, height = wHeight)
-##        welcomeFrame['borderwidth'] = 2
-##        welcomeFrame['relief'] = 'sunken'
-##        welcomeFrame.place(x=10,y=10)
-##        WindowLabel = Tkinter.Label( welcomeFrame, text = "Detection of Diabetic Retinopathy", height = 1, width = 40)
-##        WindowLabel.place(x=150, y=30)
-##        WindowLabel.configure(background="White", font=("Times New Roman", 16, "bold"))
-
-
-        ### Creating and Instantiating Objects of WindowFrame ###
         self.FirstFrame = WindowFrame(self, MainWindow, self.wWidth, self.wHeight, 0, 0)
         self.FirstFrame.btnNext['state'] = 'disable'
+        self.listOfWinFrame.append(self.FirstFrame)         # Adding First Frame to the List
 
-##        secFrame = WindowFrame(self, MainWindow, wWidth, wHeight)
-##        thirdFrame = WindowFrame(self, MainWindow, wWidth, wHeight)
-##        fourthFrame = WindowFrame(self, MainWindow, wWidth, wHeight)
-##        fifthFrame = WindowFrame(self, MainWindow, wWidth, wHeight)
-##        sixthFrame = WindowFrame(self, MainWindow, wWidth, wHeight)
-##        seventhFrame = WindowFrame(self, MainWindow, wWidth, wHeight)
-
-
-        ### Adding All WindowFrames to the List ###
-        self.listOfWinFrame.append(self.FirstFrame)
-##        self.listOfWinFrame.append(secFrame)
-##        self.listOfWinFrame.append(thirdFrame)
-##        self.listOfWinFrame.append(fourthFrame)
-##        self.listOfWinFrame.append(fifthFrame)
-##        self.listOfWinFrame.append(sixthFrame)
-##        self.listOfWinFrame.append(seventhFrame)
-
-
-        ### Welcome Frame ###
+        ### Welcome Frame Components ###
         WindowLabel = Tkinter.Label(self.FirstFrame.getWindowFrame(), text = "Feature Extraction", height = 1, width = 40)
         WindowLabel.place(x=150, y=30)
         WindowLabel.configure(background="White", font=("Times New Roman", 16, "bold"))
@@ -87,8 +59,7 @@ class MainWindow:
         browseBtn = Tkinter.Button(self.FirstFrame.getWindowFrame(), text="Browse", width=8, command=self.browseWindow)
         browseBtn.place(x=450,y=410)
 
-
-        MainWindow.mainloop()
+        MainWindow.mainloop()   #Runing the GUI
 
 
     def getListOfWinFrame():
@@ -106,6 +77,7 @@ class MainWindow:
         self.ExEd.setImage(image)                  ##Passing Image to Exudates for Processing
         self.BV.setImage(image)
 
+
     def check(self):
                 ### Selecting Set of Frames based on RadioButton Value ###
         print(self.val.get())
@@ -119,8 +91,6 @@ class MainWindow:
             self.listOfWinFrame.append(self.FirstFrame)
 
             ## Creating Frames According to the Feature Selected ##
-            
-            
             self.listOfWinFrame[0].setCallObject(self.ExEd)
             self.listOfWinFrame[0].setMethod(self.ExEd.greenComp)
             secFrame = WindowFrame(self, MainWindow, self.wWidth, self.wHeight, self.ExEd.applyCLAHE, self.ExEd)
@@ -133,6 +103,23 @@ class MainWindow:
             self.listOfWinFrame.append(thirdFrame)
             self.listOfWinFrame.append(fourthFrame)
             self.listOfWinFrame.append(fifthFrame)
+
+            ## Adding Head Labels to the Frames
+            headLabel = Tkinter.StringVar()
+            headLabel.set("Extracting Green Component")
+            self.listOfWinFrame[1].setHeadLabel(headLabel)
+            headLabel = Tkinter.StringVar()
+            headLabel.set("Applying Histogram Equalization")
+            self.listOfWinFrame[2].setHeadLabel(headLabel)
+            headLabel = Tkinter.StringVar()
+            headLabel.set("Applying Dilation")
+            self.listOfWinFrame[3].setHeadLabel(headLabel)
+            headLabel = Tkinter.StringVar()
+            headLabel.set("Thresholding Image")
+            self.listOfWinFrame[4].setHeadLabel(headLabel)
+            #headLabel = Tkinter.StringVar()
+            #headLabel.set("Applying Median Filter")
+            #self.listOfWinFrame[5].setHeadLabel(headLabel)
             
             ## Hide All Except first ###
             for i in xrange(len(self.listOfWinFrame)):

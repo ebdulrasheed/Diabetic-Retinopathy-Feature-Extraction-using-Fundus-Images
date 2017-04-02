@@ -16,6 +16,7 @@ class WindowFrame:
     image = object()
     method = object()
     callingObj = object()
+    headLabel = 0
 #    ImagePath = "C:\\Users\\Imran Ullah\\Desktop\\FYP\\GUI - FYP2\\Images\\6_left-grayscale.png"
     labelImg = 0
   
@@ -27,17 +28,18 @@ class WindowFrame:
         self.MainObj = mainObj
         if (self.callingObj != 0):    
             self.callingObj = Object
-        
         if (function != 0):
             self.method = function
+            
+        ## initializing the variables used with Tkinter widgets
+        self.headLabel = Tkinter.StringVar()
+
         
-        global winFrame
         self.winFrame = Tkinter.Frame(self.MainWindow, width = wWidth, height = wHeight)
         self.winFrame['borderwidth'] = 5
         self.winFrame['relief'] = 'ridge'
         self.winFrame.place(x=xAxis,y=yAxis)
         #self.winFrame.configure(background="White")
-
 
         self.btnQuit= Tkinter.Button(self.winFrame, text = "Close", width=8, command= lambda: self.quitProgram(self.MainWindow))
         self.btnQuit.place(x=650, y=450)
@@ -129,3 +131,9 @@ class WindowFrame:
         self.image = imgTk
         self.labelImg = Tkinter.Label(self.winFrame, image = self.image)
         self.labelImg.place(x=450, y=100)
+
+
+    def setHeadLabel(self, txt):
+        self.headLabel = Tkinter.Label(self.winFrame, textvariable = txt, height = 1, width = 40)
+        self.headLabel.place(x=150, y=30)
+        self.headLabel.configure(background="White", font=("Times New Roman", 16, "bold"))
