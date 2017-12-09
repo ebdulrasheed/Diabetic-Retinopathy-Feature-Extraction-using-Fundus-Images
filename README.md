@@ -11,7 +11,7 @@ Diabetic Retinopathy is a very common eye disease in people having diabetes. Thi
 
 ## **Dataset**
 
-[Kaggle](www.kaggle.com) provides a very hefty and diverse dataset that contains round about 30,000 images. You can download it from [here](www.kaggle.com/c/diabetic-retinopathy-detection/data).
+[Kaggle](https://www.kaggle.com) provides a very hefty and diverse dataset that contains round about 30,000 images. You can download it from [here](https://www.kaggle.com/c/diabetic-retinopathy-detection/data).
 
 
 ## **Project Structure**
